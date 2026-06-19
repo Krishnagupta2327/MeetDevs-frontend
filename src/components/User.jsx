@@ -6,23 +6,23 @@ export const User = ({user})=>{
     {console.log(user);}
     return (
         
-        <div className="card bg-base-100 w-96 shadow-sm my-40">
+        <div className="card bg-base-100 w-96 shadow-sm my-10">
   <figure>
     <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes" />
+      src={user&& user.imgUrl} />
   </figure>
-  <div className="card-body">
+  {user && <div className="card-body">
     <h2 className="card-title">
-      {user && user.firstName+" " + user.lastName}
-      <div className="badge badge-secondary">NEW</div>
+      {user.firstName+" " + user.lastName}
+      <div className="badge badge-secondary">{user.age}</div>
     </h2>
-    <p>A card component has a figure, a body part, and inhiside body there are title and actions parts</p>
-    <div className="card-actions justify-end">
-      <div className="badge badge-outline">Fashion</div>
-      <div className="badge badge-outline">Products</div>
+    <h3 className="text-left">📍{user.city}</h3>
+    <p>{user.about}</p>
+    <div className="card-actions justify-center">
+      <div className="badge badge-outline">Send Request</div>
+      <div className="badge badge-outline">Ignore</div>
     </div>
-  </div>
+  </div>}
 </div>
     );
 }

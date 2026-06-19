@@ -6,7 +6,6 @@ import {BaseUrl} from "../Utils/const";
 
 
 export function Profile() {
-    
     const user = useSelector((store)=> store.user);
    const fun = async ()=>{try{ const res= await axios.get(BaseUrl+"/profile/view",{withCredentials:true});
     console.log(res);}catch(err){
