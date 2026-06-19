@@ -8,6 +8,7 @@ import {SignUp} from "./components/Signup.jsx";
 import axios from 'axios';
 import {BaseUrl} from './Utils/const.js';
 import {useEffect} from 'react';
+import { EditProfilePage } from "./components/EditProfilePage.jsx";
 
 const App=() =>{
   
@@ -21,6 +22,7 @@ const App=() =>{
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path = '/profile' element = { <Profile/> }/>
+          <Route path = '/editProfile' element = { <EditProfilePage /> }/>
         </Route > 
         
         

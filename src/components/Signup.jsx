@@ -4,19 +4,24 @@ import { useState } from "react";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import {BaseUrl} from "../Utils/const";
-
+import { useDispatch } from "react-redux";
+import {useNavigate} from "react-router-dom";
+import {setUser} from "../Utils/userSlice";
 
 export const SignUp = () => {
+  const navigate= useNavigate();
+  const Dispatch= useDispatch();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [age,setAge] = useState("");
     const [err,setErr] = useState("");
-    
+    const [about,setAbout ] = useState("");
+    const [imgUrl,setImgUrl] = useState("");
 
     const handleSignUp = async()=>{
-        const data= {
+       try {const data= {
             firstName:firstName,
             lastName:lastName,
             age: age,
@@ -26,15 +31,38 @@ export const SignUp = () => {
 
         const res = await axios.post(BaseUrl+"/signup",data,{withcredentials:true});
         console.log(res);
-        if(res.status!=201) setErr(res);
-// }catch(err){
-//     setErr(err.message);
-//     setTimeout(()=>{
-//         setErr("");
-//     },2000);
+        if(res.status==201) {
+          try{
+            const res = await axios.post(BaseUrl+"/login",{
+            email: email,
+            password: pass
+          },{withCredentials:true});
+          console.log(res.data.data);
+          if(res.status==300 || res.status ==500)setErr(res.Error);
+          console.log("new j "+err);
+          // else setErr("");
+          Dispatch(setUser(res.data.data));
+          return navigate('/');
+          // const func= (res)=>{Dispatch(()=>setUser(res))};
+          // func(res.data);
+          
+        }catch(err){
+          setErr(err.message);
+          setTimeout(()=>{
+            setErr("");
+            // console.log("hiik");
+          },2000);
+          console.log("errrorkri" + err);
+        }
+        }
+}catch(err){
+    setErr(err.message);
+    setTimeout(()=>{
+        setErr("");
+    },2000);
 
 
-}
+}};
     
 
   return (

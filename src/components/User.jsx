@@ -14,8 +14,11 @@ export const User = ({user})=>{
   {user && <div className="card-body">
     <h2 className="card-title">
       {user.firstName+" " + user.lastName}
+      
       <div className="badge badge-secondary">{user.age}</div>
+      <div>{user.gender=="male"?"♂":"♀"}</div>
     </h2>
+    
     <h3 className="text-left">📍{user.city}</h3>
     <p>{user.about}</p>
     <div className="card-actions justify-center">
