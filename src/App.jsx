@@ -4,20 +4,26 @@ import { Body } from "./components/Body";
 import {Profile} from "./components/Profile.jsx"
 import { FeedPage } from "./components/FeedPage.jsx";
 import { LoginPage } from "./components/LoginPage.jsx";
+import {SignUp} from "./components/Signup.jsx";
+import axios from 'axios';
+import {BaseUrl} from './Utils/const.js';
+import {useEffect} from 'react';
 
-function App() {
-
+const App=() =>{
+  
   return (
+
     <>
     <BrowserRouter basename="/">
       <Routes>
         <Route path='/' element={<Body />}>
           <Route path='/' element={<FeedPage />} />
           <Route path='/login' element={<LoginPage />} />
-        </Route >
-          
+          <Route path='/signup' element={<SignUp />} />
+          <Route path = '/profile' element = { <Profile/> }/>
+        </Route > 
         
-        <Route path = '/profile' element = { <Profile/> }/>
+        
         
         
         
@@ -27,4 +33,4 @@ function App() {
   );
 };
 
-export default App
+export default App;

@@ -2,15 +2,15 @@ export function Footer() {
 
     return (
       <>
-          <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-10 fixed bottom-0 w-full">
-  <nav className="grid grid-flow-col gap-4">
+          <footer className="footer footer-horizontal footer-center bg-base-200 text-base-content rounded p-4 fixed bottom-0 w-full">
+  <nav className="grid grid-flow-col gap-5 h-1">
     <a className="link link-hover">About us</a>
     <a className="link link-hover">Contact</a>
     <a className="link link-hover">Jobs</a>
     <a className="link link-hover">Sponsership</a>
   </nav>
   <nav>
-    <div className="grid grid-flow-col gap-4">
+    <div className="grid grid-flow-col gap-4 h-1 ">
       <a>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ export function Footer() {
       </a>
     </div>
   </nav>
-  <aside>
+  <aside className="h-4">
     <p>Copyright © {new Date().getFullYear()} - All right reserved by MeetDevs Pvt Ltd</p>
   </aside>
 </footer>
