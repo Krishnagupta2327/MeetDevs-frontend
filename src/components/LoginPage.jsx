@@ -18,9 +18,9 @@ export const  LoginPage=()=> {
         email: email,
         password: pass
       },{withCredentials:true});
-      console.log(res.data.data);
+     
       if(res.status==300 || res.status ==500)setErr(res.Error);
-      console.log("new j "+err);
+    
       // else setErr("");
       Dispatch(setUser(res.data.data));
       return navigate('/');
@@ -31,9 +31,9 @@ export const  LoginPage=()=> {
       setErr(err.message);
       setTimeout(()=>{
         setErr("");
-        // console.log("hiik");
+       
       },2000);
-      console.log("errrorkri" + err);
+      console.log("Error" + err);
     }
     };
   

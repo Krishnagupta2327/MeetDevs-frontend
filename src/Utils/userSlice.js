@@ -11,7 +11,7 @@ import { createSlice } from "@reduxjs/toolkit";
     initialState:null,
     reducers: {
         setUser: (state,action)=>{
-            console.log('hiiiik');
+           
             
             return action.payload;
         },

@@ -30,16 +30,16 @@ export const SignUp = () => {
         }
 
         const res = await axios.post(BaseUrl+"/signup",data,{withcredentials:true});
-        console.log(res);
+       
         if(res.status==201) {
           try{
             const res = await axios.post(BaseUrl+"/login",{
             email: email,
             password: pass
           },{withCredentials:true});
-          console.log(res.data.data);
+         
           if(res.status==300 || res.status ==500)setErr(res.Error);
-          console.log("new j "+err);
+          console.log("Error"+err);
           // else setErr("");
           Dispatch(setUser(res.data.data));
           return navigate('/');
@@ -50,9 +50,9 @@ export const SignUp = () => {
           setErr(err.message);
           setTimeout(()=>{
             setErr("");
-            // console.log("hiik");
+         ;
           },2000);
-          console.log("errrorkri" + err);
+          console.log("Error" + err);
         }
         }
 }catch(err){

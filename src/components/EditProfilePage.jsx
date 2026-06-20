@@ -1,11 +1,17 @@
 import {User} from "./User";
 import {useSelector} from "react-redux";
 import { useState,useEffect } from "react";
+import axios from 'axios';
+import { BaseUrl } from "../Utils/const";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setUser } from "../Utils/userSlice";
 
 export const EditProfilePage = ()=>{
 
         const user = useSelector((store)=> store.user);
-
+        const Dispatch = useDispatch();
+        const navigate= useNavigate();
         // const [email, setEmail] = useState(user?.email);
         // const [pass, setPass] = useState(user?.password);
         const [firstName, setFirstName] = useState(user?.firstName);
@@ -26,6 +32,28 @@ export const EditProfilePage = ()=>{
             imgUrl:imgUrl
 
         }
+        const handleUpdate= async ()=>{
+           try{ const res = await axios.patch(BaseUrl+"/profile/update",{
+                firstName:firstName,
+                lastName:lastName,
+                age:age,
+                city:city,
+                imgUrl:imgUrl,
+                gender:gender,
+                about:about
+            },{
+                withCredentials:true
+            });
+            // console.log(res);
+                // console.log(res.data.user);
+                Dispatch(setUser(res.data.user));
+                navigate("/profile")
+            }catch(err){
+                setErr(err.message);
+                console.log(err);
+            }
+            
+        }
     
     useEffect(()=>{
         setFirstName(user?.firstName);
@@ -35,6 +63,7 @@ export const EditProfilePage = ()=>{
         setAbout(user?.about);
         setCity(user?.city);
         setImgUrl(user?.imgUrl);
+
     },[user]);
     return (
         <div>
@@ -79,8 +108,8 @@ export const EditProfilePage = ()=>{
                     <input type="string" className="input" placeholder={imgUrl} onChange={(e)=>{
                         setImgUrl(e.target.value);
                     }}/>
-                    
-                    <button className="btn btn-neutral mt-4">Update Details</button>
+                    {/* {err && <h3>{err}</h3>} */}
+                    <button className="btn btn-neutral mt-4" onClick={handleUpdate}>Update Details</button>
                     </fieldset>
                 </div>
                 <div className=" self-start">

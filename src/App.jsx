@@ -9,7 +9,8 @@ import axios from 'axios';
 import {BaseUrl} from './Utils/const.js';
 import {useEffect} from 'react';
 import { EditProfilePage } from "./components/EditProfilePage.jsx";
-
+import {AboutUsPage} from "./components/AboutUsPage.jsx";
+import {ContactPage} from "./components/ContactPage.jsx";
 const App=() =>{
   
   return (
@@ -23,6 +24,8 @@ const App=() =>{
           <Route path='/signup' element={<SignUp />} />
           <Route path = '/profile' element = { <Profile/> }/>
           <Route path = '/editProfile' element = { <EditProfilePage /> }/>
+          <Route path = '/about' element = { <AboutUsPage /> }/>
+          <Route path = '/contact' element = { <ContactPage /> }/>
         </Route > 
         
         

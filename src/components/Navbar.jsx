@@ -20,7 +20,7 @@ const handleLogOut= async ()=>{
     firstName:"k"
   },{withCredentials:true});
 
-    console.log(res.data);
+   
     return navigate("/login");
 
   }catch(err){
@@ -32,7 +32,7 @@ const handleLogOut= async ()=>{
         (
         <div className="navbar bg-base-300 shadow-sm">
   <div className="flex-1">
-    <a className="btn btn-ghost text-xl">MeetDevs</a> 
+    <Link to="/" className="btn btn-ghost text-xl"> MeetDevs</Link>
   </div>
   { userItems && <div className="flex gap-2">
     <input type="text" placeholder={( userItems && userItems.firstName )||"Search a developer..."} className="input input-bordered w-24 md:w-auto" />

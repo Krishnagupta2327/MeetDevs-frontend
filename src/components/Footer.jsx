@@ -1,14 +1,15 @@
+import { Link } from "react-router-dom";
 export function Footer() {
 
     return (
       <>
           <footer className="footer footer-horizontal  footer-center bg-base-200 text-base-content rounded p-4  w-full">
-  <nav className="grid grid-flow-col gap-5 h-1">
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Sponsership</a>
-  </nav>
+  <div className="grid grid-flow-col gap-5 h-1">
+    <Link to="/about"><h1>About us</h1> </Link>
+    <Link to="/contact"><h1>contact</h1> </Link>
+    {/* <a href="www.naukari.com"className="link link-hover">Jobs</a> */}
+    {/* <a href="www.sponser.com"className="link link-hover">Sponsership</a> */}
+  </div>
   <nav>
     <div className="grid grid-flow-col gap-4 h-1 ">
       <a>

@@ -15,7 +15,7 @@ export function Body() {
   const authfun=  async ()=>{
    try{ 
       const res= await axios.get(BaseUrl+"/profile/view",{withCredentials:true});
-      console.log(res);
+    
       
        dispatch(setUser(res.data));
       
