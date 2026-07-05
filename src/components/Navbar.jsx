@@ -48,6 +48,16 @@ const handleLogOut= async ()=>{
             Profile
           </Link>
         </li>
+        <li className="mx-1">
+          <Link to="/connections" className="justify-between">
+            Connections
+          </Link>
+        </li>
+        <li className="mx-1">
+          <Link to="/requests" className="justify-between">
+            Requests
+          </Link>
+        </li>
         <Link to ="/login"> <li >Login</li></Link>
         <li className="mx-1"><button onClick={handleLogOut}> logout</button></li>
       </ul>
