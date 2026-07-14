@@ -3,14 +3,14 @@ import {useSelector} from "react-redux";
 import {User} from "./User.jsx";
 import axios from 'axios';
 import { fetchConnections } from "./Connections.jsx";
-// import {BaseUrl} from "../Utils/const.js";
+import {BaseUrl} from "../Utils/const.js";
 
 export const ReqList  = () =>{
 
     const connections =  useSelector((store) => store.connections);
     const reviewReq= (id, status)=>{
         try{
-        const res= axios.post ("http://localhost:7777"+ `/connectionRequest/review/${id}/${status}`,{},{withCredentials:true});
+        const res= axios.post (BaseUrl+ `/connectionRequest/review/${id}/${status}`,{},{withCredentials:true});
         fetchConnections();
         }
         catch(err){

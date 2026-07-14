@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-// import {BaseUrl} from "../Utils/const.js";
+import {BaseUrl} from "../Utils/const.js";
 // import { store } from "../Utils/store.js";
 import { setFriend } from "../Utils/FreindSlice.js";
 import {useDispatch} from "react-redux";
@@ -12,7 +12,7 @@ export const Friends = ()=>{
     const dispatch = useDispatch();
     const fetchConnections = async () =>{
         try{
-            const res = await axios.get("http://localhost:7777"+ "/user/connections",{withCredentials:true});
+            const res = await axios.get(BaseUrl+ "/user/connections",{withCredentials:true});
             console.log(connections);
             dispatch(setFriend(res.data.data));
             console.log(res.data.data)
