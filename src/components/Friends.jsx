@@ -1,3 +1,5 @@
+
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import {BaseUrl} from "../Utils/const.js";
@@ -9,6 +11,8 @@ import {FriendsList} from "./FriendsList.jsx";
 
 export const Friends = ()=>{ 
     const connections =  useSelector((store) => store.friends);
+    const theme = useSelector((store) => store.theme.mode);
+    const isDark = theme === "dark";
     const dispatch = useDispatch();
     const fetchConnections = async () =>{
         try{
@@ -33,12 +37,14 @@ export const Friends = ()=>{
         // }
         // return (<h1> HIII</h1>)
     return connections?(
-        <div className="flex flex-col justify-center items-center text-center gap-5">
-        <h1 className="">Your connections</h1>
+        <div className="flex flex-col items-center">
         <FriendsList />
         </div>
     ):(
-        <h1>Fetching Requests...</h1>
+        <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
+            <div className={`w-10 h-10 border-2 border-t-transparent rounded-full animate-spin ${isDark ? "border-sky-400" : "border-sky-600"}`}></div>
+            <h1 className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>Fetching Requests...</h1>
+        </div>
     );
 }
 // export const {fetchConnections} = Connections;

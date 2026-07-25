@@ -1,16 +1,19 @@
 
+
 import { useState } from "react";
 // import {useState} from "react-route";
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import {BaseUrl} from "../Utils/const";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {setUser} from "../Utils/userSlice";
 
 export const SignUp = () => {
   const navigate= useNavigate();
   const Dispatch= useDispatch();
+  const theme = useSelector((store) => store.theme.mode);
+  const isDark = theme === "dark";
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -63,49 +66,69 @@ export const SignUp = () => {
 
 
 }};
+
+    const inputClass = `w-full rounded-xl px-4 py-2.5 text-sm border transition-all focus:outline-none ${isDark ? "bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-sky-500/50 focus:bg-white/10" : "bg-black/5 border-black/10 text-gray-900 placeholder:text-gray-400 focus:border-sky-500/50 focus:bg-black/5"}`;
+    const labelClass = `text-xs font-semibold uppercase tracking-wider mb-1.5 block ${isDark ? "text-gray-400" : "text-gray-500"}`;
     
 
   return (
+    <div className="flex items-center justify-center min-h-[80vh] px-4 py-8">
+        <div className={`w-full max-w-sm rounded-3xl border p-8 backdrop-blur-xl transition-colors duration-300 ${isDark ? "bg-white/3 border-white/10 shadow-[0_0_40px_rgba(56,189,248,0.06)]" : "bg-white border-black/5 shadow-lg"}`}>
+            <div className="flex flex-col items-center text-center mb-6">
+            <h2 className={`text-2xl font-bold tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
+              Create Your <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Account</span>
+            </h2>
+            <p className={`text-sm mt-1 ${isDark ? "text-gray-400" : "text-gray-500"}`}>Join the MeetDevs community</p>
+            </div>
+
+    <div className="flex flex-col gap-4">
+
+    <div className="grid grid-cols-2 gap-3">
     <div>
-        <div className="card-body items-center">
-            <div className="text-center text-2xl">
-            <h2 >SignUp Here!</h2></div>
-            <div className="flex mx-10">
-    <fieldset className="bg-cyan  border-2 rounded-box w-xs p-4 text">
-    <label className="label">First Name</label>
-    <input type="text" className="input" placeholder={firstName}  onChange={(e)=>{
+    <label className={labelClass}>First Name</label>
+    <input type="text" className={inputClass} placeholder={firstName}  onChange={(e)=>{
     setFirstName(e.target.value);
   }} />
-    <label className="label">Last Name</label>
-  <input type="text" className="input" placeholder={lastName} onChange={(e)=>{
+    </div>
+    <div>
+    <label className={labelClass}>Last Name</label>
+  <input type="text" className={inputClass} placeholder={lastName} onChange={(e)=>{
     setLastName(e.target.value);
   }} />
-  <label className="label">Age</label>
-  <input type="text" className="input" placeholder={age}  onChange={(e)=>{
+  </div>
+  </div>
+
+  <div>
+  <label className={labelClass}>Age</label>
+  <input type="text" className={inputClass} placeholder={age}  onChange={(e)=>{
     setAge(e.target.value);
   }} />
-  <label className="label">Email</label>
-  
-  <input type="email" className="input" placeholder={email} onChange={(e)=>{
+  </div>
+
+  <div>
+  <label className={labelClass}>Email</label>
+  <input type="email" className={inputClass} placeholder={email} onChange={(e)=>{
     setEmail(e.target.value);
   }} />
-  
+  </div>
 
-  <label className="label">Password</label>
-  <input type="text" className="input" placeholder={pass} onChange={(e)=>{
+  <div>
+  <label className={labelClass}>Password</label>
+  <input type="text" className={inputClass} placeholder={pass} onChange={(e)=>{
     setPass(e.target.value);
   }}  />
+  </div>
+
   {
-    err && <h1>Error: {err}</h1>
+    err && <p className="text-red-400 text-xs text-center">Error: {err}</p>
   }
 
-  <button className="btn btn-neutral mt-4 flex mx-auto" onClick={handleSignUp}>SignUp</button>
-</fieldset>
-
+  <button className="mt-2 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold py-2.5 rounded-xl transition-colors shadow-[0_0_20px_rgba(14,165,233,0.25)]" onClick={handleSignUp}>SignUp</button>
 </div>
-<div className="flex ">
-      <h3>Already have an account? </h3>
-      <Link to="/login"><h3 className="mx-2 underline"> Login</h3></Link>
+
+<div className={`flex justify-center gap-1.5 mt-6 pt-5 border-t text-sm ${isDark ? "border-white/10 text-gray-400" : "border-black/5 text-gray-500"}`}>
+      <span>Already have an account?</span>
+      <Link to="/login" className="text-sky-400 font-semibold hover:text-sky-300 transition-colors">Login</Link>
       </div>
 </div>
 </div>
