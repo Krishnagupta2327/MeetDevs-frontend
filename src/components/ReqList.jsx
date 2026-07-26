@@ -16,7 +16,8 @@ export const ReqList  = () =>{
         try{
         const res= axios.post (BaseUrl+ `/connectionRequest/review/${id}/${status}`,{},{withCredentials:true});
         fetchRequests();
-        requests =  useSelector((store) => store.requests);
+        const b =  useSelector((store) => store.requests);
+        setRequests(b);
         }
         catch(err){
             console.log(err);
