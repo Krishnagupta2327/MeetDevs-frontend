@@ -28,7 +28,7 @@ export const ConnectionList  = () =>{
 
   <div className="flex flex-col items-center text-center mb-10">
     <span className={`text-xs font-semibold uppercase tracking-widest mb-3 ${isDark ? "text-sky-400" : "text-sky-600"}`}>
-      Requests
+     your network
     </span>
     <h1 className={`text-3xl md:text-4xl font-bold tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
       Your <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Connections </span>
