@@ -4,13 +4,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import {BaseUrl} from "../Utils/const.js";
 // import { store } from "../Utils/store.js";
-import { setFriend } from "../Utils/FreindSlice.js";
+import { setConnections } from "../Utils/connectionsSlice.js";
 import {useDispatch} from "react-redux";
 import { useSelector } from "react-redux";
-import {FriendsList} from "./FriendsList.jsx";
+// import {FriendsList} from "./FriendsList.jsx";
+import {ConnectionList} from "./ConnectionsList.jsx";
 
-export const Friends = ()=>{ 
-    const connections =  useSelector((store) => store.friends);
+export const ConnectionsPage = ()=>{ 
+    const connections =  useSelector((store) => store.connections);
     const theme = useSelector((store) => store.theme.mode);
     const isDark = theme === "dark";
     const dispatch = useDispatch();
@@ -18,8 +19,8 @@ export const Friends = ()=>{
         try{
             const res = await axios.get(BaseUrl+ "/user/connections",{withCredentials:true});
             console.log(connections);
-            dispatch(setFriend(res.data.data));
-            console.log(res.data.data)
+            dispatch(setConnections(res.data.data));
+            console.log(res.data.data);
             console.log(connections);
             
         }catch(err){
@@ -38,7 +39,7 @@ export const Friends = ()=>{
         // return (<h1> HIII</h1>)
     return connections?(
         <div className="flex flex-col items-center">
-        <FriendsList />
+        <ConnectionList />
         </div>
     ):(
         <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
@@ -47,4 +48,4 @@ export const Friends = ()=>{
         </div>
     );
 }
-// export const {fetchConnections} = Connections;
+export const {fetchConnections} = ConnectionsPage;

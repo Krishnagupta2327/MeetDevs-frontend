@@ -3,14 +3,14 @@ import  userSlice  from './userSlice';
 import themeReducer from "./themeSlice";
 
 // import { connect } from 'http2';
-import connectionSlice  from './connectionSlice';
-import friendSlice from './FreindSlice';
+import requestsSlice  from './requestsSlice';
+import connectionsSlice from './connectionsSlice';
 
 export const store = configureStore({
     reducer:{
         user: userSlice,
-        connections: connectionSlice,
-        friends: friendSlice,
+        requests: requestsSlice,
+        connections: connectionsSlice,
         theme: themeReducer
 
     }

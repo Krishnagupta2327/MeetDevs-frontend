@@ -11,8 +11,8 @@ import {useEffect} from 'react';
 import { EditProfilePage } from "./components/EditProfilePage.jsx";
 import {AboutUsPage} from "./components/AboutUsPage.jsx";
 import {ContactPage} from "./components/ContactPage.jsx";
-import {Connections} from "./components/Connections.jsx";
-import {Friends} from "./components/Friends.jsx";
+import {RequestPage} from "./components/RequestPage.jsx";
+import {ConnectionsPage} from "./components/ConnectionsPage.jsx";
 
 const App=() =>{
   
@@ -28,8 +28,8 @@ const App=() =>{
           <Route path = '/profile' element = { <Profile/> }/>
           <Route path = '/editProfile' element = { <EditProfilePage /> }/>
           <Route path = '/about' element = { <AboutUsPage /> }/>
-          <Route path = '/requests' element = { <Connections /> }/>
-          <Route path = '/connections' element = { <Friends/> }/>
+          <Route path = '/requests' element = { <RequestPage /> }/>
+          <Route path = '/connections' element = { <ConnectionsPage/> }/>
 
           <Route path = '/contact' element = { <ContactPage /> }/>
         </Route > 

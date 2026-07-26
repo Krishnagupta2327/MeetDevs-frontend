@@ -3,17 +3,17 @@
 import {useSelector} from "react-redux";
 import {User} from "./User.jsx";
 import axios from 'axios';
-import { fetchConnections } from "./Connections.jsx";
+import { fetchConnections } from "./ConnectionsPage.jsx";
 import {BaseUrl} from "../Utils/const.js";
 
-export const FriendsList  = () =>{
+export const ConnectionList  = () =>{
 
-    const connections =  useSelector((store) => store.friends);
+    const connections =  useSelector((store) => store.connections);
     const theme = useSelector((store) => store.theme.mode);
     const isDark = theme === "dark";
     const reviewReq= (id, status)=>{
         try{
-        const res= axios.post (BaseUrl+ `/connectionRequest/review/${id}/${status}`,{},{withCredentials:true});
+        // const res= axios.post (BaseUrl+ `/connectionRequest/review/${id}/${status}`,{},{withCredentials:true});
         fetchConnections();
         }
         catch(err){
@@ -31,10 +31,10 @@ export const FriendsList  = () =>{
       Requests
     </span>
     <h1 className={`text-3xl md:text-4xl font-bold tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
-      Connection <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Requests</span>
+      Your <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Connections </span>
     </h1>
     <p className={`text-sm mt-2 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-      {connections?.length || 0} pending {connections?.length === 1 ? "request" : "requests"}
+      {connections?.length || 0} Connections 
     </p>
   </div>
 
@@ -70,14 +70,14 @@ export const FriendsList  = () =>{
             className="flex-1 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold py-2.5 rounded-xl transition-colors"
             onClick={()=> reviewReq(connection._id,"accepted")}
           >
-            ✓ Accept
+           Send message
           </button>
 
           <button
-            onClick={()=> reviewReq( connection._id, "rejected")}
+        
             className={`flex-1 text-sm font-semibold py-2.5 rounded-xl border transition-colors ${isDark ? "bg-white/5 hover:bg-white/10 border-white/10 text-gray-300 hover:text-white" : "bg-black/5 hover:bg-black/10 border-black/10 text-gray-600 hover:text-gray-900"}`}
           >
-            ✕ Ignore
+            View Profile
           </button>
         </div>
       </div>

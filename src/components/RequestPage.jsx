@@ -3,46 +3,46 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import {BaseUrl} from "../Utils/const.js";
 // import { store } from "../Utils/store.js";
-import { setConnections } from "../Utils/connectionSlice.js";
+import { setRequests } from "../Utils/requestsSlice.js";
 import {useDispatch} from "react-redux";
 import { useSelector } from "react-redux";
 import {ReqList} from "./ReqList.jsx";
 
-export const Connections = ()=>{ 
-    const connections =  useSelector((store) => store.connections);
+export const RequestPage = ()=>{ 
+    const requests =  useSelector((store) => store.requests);
     const theme = useSelector((store) => store.theme.mode);
     const isDark = theme === "dark";
     const dispatch = useDispatch();
-    const fetchConnections = async () =>{
+    const fetchRequests = async () =>{
         try{
             const res = await axios.get(BaseUrl+ "/user/requests/recieved",{withCredentials:true});
-            console.log(connections);
-            dispatch(setConnections(res.data.data));
-            console.log(res.data.data)
-            console.log(connections);
+            // console.log(connections);
+            dispatch(setRequests(res.data.data));
+            // console.log(res.data.data)
+            // console.log(connections);
             
         }catch(err){
             console.log(err);
         }
     }
     useEffect(() => {
-        console.log("Connections updated:", connections);
-    }, [connections]);
+        console.log("requests updated:",requests);
+    }, [requests]);
 
     useEffect(()=>{
-        fetchConnections()
-    },[]);
+        fetchRequests()
+    },[requests]);
         // {res && (<h1>{res.data}</h1>)
         // }
         // return (<h1> HIII</h1>)
-    return connections?(
+    return requests?(
         <div className="flex flex-col items-center px-4 py-12 md:py-16">
             <div className="flex flex-col items-center text-center mb-10">
                 <span className={`text-xs font-semibold uppercase tracking-widest mb-3 ${isDark ? "text-sky-400" : "text-sky-600"}`}>
-                    Your Network
+                    add new connections
                 </span>
                 <h1 className={`text-3xl md:text-4xl font-bold tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
-                    Your <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Connections</span>
+                    Connection <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Requests</span>
                 </h1>
             </div>
             <ReqList />
@@ -54,4 +54,4 @@ export const Connections = ()=>{
         </div>
     );
 }
-export const {fetchConnections} = Connections;
+export const {fetchRequests} = RequestPage;

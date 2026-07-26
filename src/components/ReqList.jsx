@@ -2,19 +2,21 @@
 
 import {useSelector} from "react-redux";
 import {User} from "./User.jsx";
+import {useState} from "react";
 import axios from 'axios';
-import { fetchConnections } from "./Connections.jsx";
+import { fetchRequests } from "./RequestPage.jsx";
 import {BaseUrl} from "../Utils/const.js";
 
 export const ReqList  = () =>{
-
-    const connections =  useSelector((store) => store.connections);
+    const a=  useSelector((store) => store.requests);
+    const [requests,setRequests] = useState(a);
     const theme = useSelector((store) => store.theme.mode);
     const isDark = theme === "dark";
     const reviewReq= (id, status)=>{
         try{
         const res= axios.post (BaseUrl+ `/connectionRequest/review/${id}/${status}`,{},{withCredentials:true});
-        fetchConnections();
+        fetchRequests();
+        requests =  useSelector((store) => store.requests);
         }
         catch(err){
             console.log(err);
@@ -27,20 +29,21 @@ export const ReqList  = () =>{
 
 <div className="max-w-3xl mx-auto px-4 py-12 md:py-16">
 
-  <div className="flex flex-col items-center text-center mb-10">
-    <span className={`text-xs font-semibold uppercase tracking-widest mb-3 ${isDark ? "text-sky-400" : "text-sky-600"}`}>
+  {/* <div className="flex flex-col items-center text-center mb-10"> */}
+    {/* <span className={`text-xs font-semibold uppercase tracking-widest mb-3 ${isDark ? "text-sky-400" : "text-sky-600"}`}>
       Requests
     </span>
     <h1 className={`text-3xl md:text-4xl font-bold tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
       Connection <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Requests</span>
-    </h1>
-    <p className={`text-sm mt-2 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+    </h1> */}
+    {/* <p className={`text-sm mt-2 ${isDark ? "text-gray-400" : "text-gray-500"}`}>
       {connections?.length || 0} pending {connections?.length === 1 ? "request" : "requests"}
-    </p>
-  </div>
+    </p> */}
+  {/* </div> */}
 
   <div className="flex flex-col gap-5">
-    {connections.map((connection) => (
+    
+    {requests.map((connection) => (
       <div
         key={connection._id}
         className={`rounded-3xl border p-6 backdrop-blur-xl transition-all duration-300 ${isDark ? "bg-white/3 border-white/10 hover:border-sky-500/30 hover:bg-white/5" : "bg-white border-black/5 hover:border-sky-300 shadow-md"}`}
@@ -69,7 +72,13 @@ export const ReqList  = () =>{
         <div className="flex items-center gap-3 mt-5">
           <button
             className="flex-1 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold py-2.5 rounded-xl transition-colors"
-            onClick={()=> reviewReq(connection._id,"accepted")}
+            onClick={()=> {reviewReq(connection._id,"accepted");
+              fetchRequests();
+              const b=  useSelector((store) => store.requests);
+              setRequests(b);
+            }
+              
+            }
           >
             ✓ Accept
           </button>
