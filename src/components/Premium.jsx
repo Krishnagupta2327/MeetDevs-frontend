@@ -46,7 +46,7 @@ export const Premium = ()=>{
     const handleBuy = async (planName)=>{
       try{
       console.log("buy start")
-      const resp = await axios.post(BaseUrl + "/createPayment",{
+      const resp = await axios.post(BaseUrl + "/payment/create",{
         plan : planName
       },{
         withCredentials:true
