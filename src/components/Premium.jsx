@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {BaseUrl} from '../utils/const'
+import {BaseUrl} from '../Utils/const'
 import { useSelector } from "react-redux";
 
 
