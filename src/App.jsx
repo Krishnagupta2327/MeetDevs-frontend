@@ -13,6 +13,7 @@ import {AboutUsPage} from "./components/AboutUsPage.jsx";
 import {ContactPage} from "./components/ContactPage.jsx";
 import {RequestPage} from "./components/RequestPage.jsx";
 import {ConnectionsPage} from "./components/ConnectionsPage.jsx";
+import {Premium} from "./components/Premium.jsx"
 
 const App=() =>{
   
@@ -30,6 +31,7 @@ const App=() =>{
           <Route path = '/about' element = { <AboutUsPage /> }/>
           <Route path = '/requests' element = { <RequestPage /> }/>
           <Route path = '/connections' element = { <ConnectionsPage/> }/>
+          <Route path = '/premium' element ={ <Premium />} />
 
           <Route path = '/contact' element = { <ContactPage /> }/>
         </Route > 

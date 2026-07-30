@@ -11,16 +11,7 @@ export const ConnectionList  = () =>{
     const connections =  useSelector((store) => store.connections);
     const theme = useSelector((store) => store.theme.mode);
     const isDark = theme === "dark";
-    const reviewReq= (id, status)=>{
-        try{
-        // const res= axios.post (BaseUrl+ `/connectionRequest/review/${id}/${status}`,{},{withCredentials:true});
-        fetchConnections();
-        }
-        catch(err){
-            console.log(err);
-        }
-
-    }
+    
     return (
 
 
@@ -68,7 +59,7 @@ export const ConnectionList  = () =>{
         <div className="flex items-center gap-3 mt-5">
           <button
             className="flex-1 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold py-2.5 rounded-xl transition-colors"
-            onClick={()=> reviewReq(connection._id,"accepted")}
+            
           >
            Send message
           </button>

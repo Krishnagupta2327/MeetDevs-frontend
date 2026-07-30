@@ -62,7 +62,11 @@ const handleLogOut= async ()=>{
             Requests
           </Link>
         </li>
-        <Link to ="/login" className={`transition-colors px-2 py-1 rounded-lg ${isDark ? "text-gray-400 hover:text-white hover:bg-white/5" : "text-gray-500 hover:text-gray-900 hover:bg-black/5"}`}><li>Login</li></Link>
+        <li>
+        <Link to ="/premium" className={`transition-colors px-2 py-1 rounded-lg ${isDark ? "text-gray-400 hover:text-white hover:bg-white/5" : "text-gray-500 hover:text-gray-900 hover:bg-black/5"}`}>Premium
+        </ Link>
+        </li>
+
         <li><button onClick={handleLogOut} className={`px-3 py-1.5 rounded-lg border transition-all ${isDark ? "bg-white/5 hover:bg-white/10 border-white/10 text-gray-300 hover:text-white" : "bg-black/5 hover:bg-black/10 border-black/10 text-gray-600 hover:text-gray-900"}`}> Logout</button></li>
 
        
