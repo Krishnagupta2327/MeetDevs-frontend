@@ -2,7 +2,8 @@ import axios from 'axios';
 import {BaseUrl} from '../Utils/const'
 import { useSelector } from "react-redux";
 import {useState} from "react";
-
+import { setUser } from '../Utils/userSlice';
+import { useDispatch } from 'react-redux';
 
 export const Premium = ()=>{
     const theme = useSelector((store) => store.theme.mode);
@@ -10,7 +11,7 @@ export const Premium = ()=>{
     const user = useSelector((store)=> store.user)
    const [membershipType,setMembershipType] = useState(user?.membershipType);
 
-   
+   const Dispatch = useDispatch();
     const allPlans = [
       {
         name: "Silver",
@@ -46,23 +47,14 @@ export const Premium = ()=>{
 
     const handleBuy = async (planName)=>{
       try{
-      console.log("buy start")
+     
       const resp = await axios.post(BaseUrl + "/payment/create",{
         plan : planName
       },{
         withCredentials:true
       });
-      console.log("ekjhiurr");
-        console.log(resp?.data?.data);
-        console.log("ekjhiurrolooo");
-      
-
-        
-
-      
-        console.log("ekjhiurrol333ooo");
+        console.log(resp?.data?.data);      
         const order = resp?.data?.data;
-        console.log("ekjhiurrol3232ooo");
         const options = {
           "key": "rzp_test_TJmfN8SptVod2D" ,// Replace with your Razorpay Key ID
           "amount": order.amount, // Amount in paise (50000 = ₹500)
@@ -80,6 +72,8 @@ export const Premium = ()=>{
               console.log('hiii')
               console.log(mbt)
               setMembershipType(mbt.data);
+              const userr = await axios.get(BaseUrl +"/profile/view");
+              Dispatch(setUser(userr.data))
               console.log(membershipType);
              
           },
