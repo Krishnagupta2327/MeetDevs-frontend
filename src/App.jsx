@@ -14,6 +14,7 @@ import {ContactPage} from "./components/ContactPage.jsx";
 import {RequestPage} from "./components/RequestPage.jsx";
 import {ConnectionsPage} from "./components/ConnectionsPage.jsx";
 import {Premium} from "./components/Premium.jsx"
+import {ChatPage} from './components/ChatPage.jsx'
 
 const App=() =>{
   
@@ -32,6 +33,7 @@ const App=() =>{
           <Route path = '/requests' element = { <RequestPage /> }/>
           <Route path = '/connections' element = { <ConnectionsPage/> }/>
           <Route path = '/premium' element ={ <Premium />} />
+          <Route path = '/chat' element ={ <ChatPage />} />
 
           <Route path = '/contact' element = { <ContactPage /> }/>
         </Route > 

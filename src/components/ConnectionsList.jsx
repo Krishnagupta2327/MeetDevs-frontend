@@ -57,13 +57,14 @@ export const ConnectionList  = () =>{
         </p>
 
         <div className="flex items-center gap-3 mt-5">
+          <Link to="/chat">
           <button
-            className="flex-1 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold py-2.5 rounded-xl transition-colors"
+            className="flex-1 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold py-2.5 rounded-xl transition-colors" 
             
           >
            Send message
           </button>
-
+          </Link >
           <button
         
             className={`flex-1 text-sm font-semibold py-2.5 rounded-xl border transition-colors ${isDark ? "bg-white/5 hover:bg-white/10 border-white/10 text-gray-300 hover:text-white" : "bg-black/5 hover:bg-black/10 border-black/10 text-gray-600 hover:text-gray-900"}`}
