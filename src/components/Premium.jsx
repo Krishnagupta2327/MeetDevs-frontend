@@ -72,11 +72,13 @@ export const Premium = ()=>{
           // "image": "https://yourdomain.com/logo.png",
           "order_id": order.id, // Generated from backend
           "handler": async function (response) {
+           
               alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
               // You should verify payment on the server here
-              const mbt = await axios.get("/payment/verify",{withCredentials:true});
+             
+              const mbt = await axios.get(BaseUrl + "/payment/verify",{withCredentials:true});
               setMembershipType(mbt);
-
+             
           },
           "prefill": {
               "name": order.notes.firstName,
