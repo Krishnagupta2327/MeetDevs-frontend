@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {BaseUrl} from '../Utils/const'
 import { useSelector } from "react-redux";
+import {useState} from "react";
 
 
 export const Premium = ()=>{
@@ -37,7 +38,7 @@ export const Premium = ()=>{
     ];
 
     
-    const plans = membershipType === "silver"
+    const plans = membershipType === "Silver"
       ? allPlans.filter((p) => p.name === "Gold")
       : allPlans;
 
