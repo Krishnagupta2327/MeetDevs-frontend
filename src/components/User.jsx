@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import {BaseUrl} from "../Utils/const";
 
 
-
 export const User = ({user,i,setI})=>{
     const theme = useSelector((store) => store.theme.mode);
     const isDark = theme === "dark";

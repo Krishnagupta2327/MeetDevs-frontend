@@ -33,7 +33,7 @@ const App=() =>{
           <Route path = '/requests' element = { <RequestPage /> }/>
           <Route path = '/connections' element = { <ConnectionsPage/> }/>
           <Route path = '/premium' element ={ <Premium />} />
-          <Route path = '/chat' element ={ <ChatPage />} />
+          <Route path = '/chat/:targetUserId' element ={ <ChatPage />} />
 
           <Route path = '/contact' element = { <ContactPage /> }/>
         </Route > 

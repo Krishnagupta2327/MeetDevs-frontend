@@ -58,7 +58,7 @@ export const ConnectionList  = () =>{
         </p>
 
         <div className="flex items-center gap-3 mt-5">
-          <Link to="/chat">
+          <Link to ={`/chat/${connection._id}`}>
           <button
             className="flex-1 bg-sky-500 hover:bg-sky-400 text-white text-sm font-semibold py-2.5 rounded-xl transition-colors" 
             
