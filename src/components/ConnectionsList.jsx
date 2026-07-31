@@ -5,6 +5,7 @@ import {User} from "./User.jsx";
 import axios from 'axios';
 import { fetchConnections } from "./ConnectionsPage.jsx";
 import {BaseUrl} from "../Utils/const.js";
+import {Link} from "react-router-dom";
 
 export const ConnectionList  = () =>{
 
