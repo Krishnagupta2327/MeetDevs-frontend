@@ -7,7 +7,7 @@ export const Premium = ()=>{
     const theme = useSelector((store) => store.theme.mode);
     const isDark = theme === "dark";
     const user = useSelector((store)=> store.user)
-   const membershipType= user?.membershipType;
+   const [membershipType,setMembershipType] = useState(user?.membershipType);
 
    
     const allPlans = [
@@ -70,10 +70,13 @@ export const Premium = ()=>{
           "description": "Upgrade your plan, explore more...",
           // "image": "https://yourdomain.com/logo.png",
           "order_id": order.id, // Generated from backend
-          // "handler": function (response) {
-          //     alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
-          //     // You should verify payment on the server here
-          // },
+          "handler": async function (response) {
+              alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
+              // You should verify payment on the server here
+              const mbt = await axios.get("/payment/verify",{withCredentials:true});
+              setMembershipType(mbt);
+
+          },
           "prefill": {
               "name": order.notes.firstName,
               "email": order.notes.email,
@@ -92,9 +95,9 @@ export const Premium = ()=>{
       console.log("ekjhiurroloo11111o");
   
           const rzp=  new window.Razorpay(options);
-          console.log("ekjhiurrolooo2222222222");
+         
           rzp.open();
-          console.log("ekjhiurrolooo222");
+         
           // e.preventDefault();
        }catch(err){
           console.log(err);
@@ -102,7 +105,7 @@ export const Premium = ()=>{
     }
 
     
-    if (membershipType === "gold") {
+    if (membershipType === "Gold") {
       return (
         <div className="px-4 py-12 md:py-16 flex justify-center">
           <div className={`${cardClass} max-w-md relative overflow-hidden`}>
@@ -124,17 +127,17 @@ export const Premium = ()=>{
 
           <div className="flex flex-col items-center text-center mb-14">
             <span className={`text-xs font-semibold uppercase tracking-widest mb-3 ${isDark ? "text-sky-400" : "text-sky-600"}`}>
-              {membershipType === "silver" ? "Upgrade" : "Pricing"}
+              {membershipType === "Silver" ? "Upgrade" : "Pricing"}
             </span>
             <h1 className={`text-4xl md:text-5xl font-bold tracking-tight mb-3 ${isDark ? "text-white" : "text-gray-900"}`}>
-              {membershipType === "silver" ? (
+              {membershipType === "Silver" ? (
                 <>Go for <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Gold</span></>
               ) : (
                 <>Go <span className="bg-linear-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">Premium</span></>
               )}
             </h1>
             <p className={`text-sm max-w-md ${isDark ? "text-gray-400" : "text-gray-500"}`}>
-              {membershipType === "silver"
+              {membershipType === "Silver"
                 ? "You're on Silver — upgrade to Gold for chat with non-connections and higher daily limits."
                 : "Unlock more connections, more visibility, and more conversations with the developer community."}
             </p>
@@ -183,7 +186,7 @@ export const Premium = ()=>{
                   }
                   onClick = {()=>{ handleBuy(plan.name) }}
                 >
-                  {membershipType === "silver" ? "Upgrade to Gold" : `Buy for ₹${plan.price}/-`}
+                  {membershipType === "Silver" ? "Upgrade to Gold" : `Buy for ₹${plan.price}/-`}
                 </button>
               </div>
             ))}
