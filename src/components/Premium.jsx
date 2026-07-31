@@ -79,7 +79,7 @@ export const Premium = ()=>{
               const mbt = await axios.get(BaseUrl + "/payment/verify",{withCredentials:true});
               console.log('hiii')
               console.log(mbt)
-              setMembershipType(mbt);
+              setMembershipType(mbt.data);
               console.log(membershipType);
              
           },
