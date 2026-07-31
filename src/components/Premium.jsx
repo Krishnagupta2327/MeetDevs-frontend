@@ -77,7 +77,10 @@ export const Premium = ()=>{
               // You should verify payment on the server here
              
               const mbt = await axios.get(BaseUrl + "/payment/verify",{withCredentials:true});
+              console.log('hiii')
+              console.log(mbt)
               setMembershipType(mbt);
+              console.log(membershipType);
              
           },
           "prefill": {
