@@ -53,6 +53,7 @@ export const ChatPage =  ()=>{
             newMessage,
             targetUserId
         });
+        fetchChat();
         setNewMessage("");
     };
     
